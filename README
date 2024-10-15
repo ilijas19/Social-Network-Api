@@ -1,0 +1,19 @@
+### SOCIAL NETWORK API
+
+### FEATURES
+
+[] OVERVIEW
+
+[] AUTH
+
+-Register User: Allows users to register an account and sends a verification email with a unique token.
+
+-Verify Email: Verifies the user's email using the token provided in the email verification link.
+
+-Login User: Authenticates users and checks if the user's email has been verified before granting access.
+
+-Forgot Password: Allows users to request a password reset email, providing a link with a token to reset their password.
+
+-Reset Password: Resets the user's password using the token provided in the password reset link sent via email.
+
+-Logout: Logs the user out by deleting both refresh and access tokens from the database to invalidate the session.
