@@ -17,3 +17,21 @@
 -Reset Password: Resets the user's password using the token provided in the password reset link sent via email.
 
 -Logout: Logs the user out by deleting both refresh and access tokens from the database to invalidate the session.
+
+[] USERS
+
+-Get All Users: Admin-only function to retrieve all users and their data.
+
+-Search For Users: Search for users by name property, with case sensitivity and allowing partial matches.
+
+-Get Single User: Retrieve a user by their ID property.
+
+-Show Current User: Get information about the currently authenticated user.
+
+-Update User: Modify user information.
+
+-Update User Password: Change the password for the user.
+
+-Upload Profile Picture: Upload a picture to the cloud and update the user's profile picture property.
+
+-Delete User: Permanently delete the current user.
