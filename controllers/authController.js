@@ -13,16 +13,28 @@ const {
 } = require("../utils");
 
 const registerUser = async (req, res) => {
-  const { email, name, password } = req.body;
-  if (!email || !name || !password) {
-    throw new CustomError.BadRequestError("All values must be provided");
+  const { email, username, name, password } = req.body;
+  if (!email || !username || !name || !password) {
+    throw new CustomError.BadRequestError("All credientials must be provided");
   }
   const existingEmail = await User.findOne({ email });
   if (existingEmail) {
     throw new CustomError.BadRequestError("Email is already in use");
   }
+
+  const existingUsername = await User.findOne({ username });
+  if (existingUsername) {
+    throw new CustomError.BadRequestError("Username already in use");
+  }
+
   const verificationToken = crypto.randomBytes(40).toString("hex");
-  const user = await User.create({ email, name, password, verificationToken });
+  const user = await User.create({
+    email,
+    name,
+    username,
+    password,
+    verificationToken,
+  });
   const origin = process.env.FRONTEND_ORIGIN || "http://localhost:3000";
   await sendVerificationEmail({
     name: user.name,
