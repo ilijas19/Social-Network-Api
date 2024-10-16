@@ -31,6 +31,12 @@ const authenticateUser = async (req, res, next) => {
   }
 };
 
-const authorizePermission = () => {};
+const authorizePermission = (role) => {
+  return async (req, res, next) => {
+    if (req.user.role === "admin") return next();
+    if (req.user.role === role) return next();
+    throw new CustomError.UnauthorizedError("Not Authorized to use this path");
+  };
+};
 
 module.exports = { authenticateUser, authorizePermission };
