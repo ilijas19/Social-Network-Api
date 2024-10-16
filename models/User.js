@@ -9,6 +9,12 @@ const UserSchema = new mongoose.Schema({
     minLength: [2, "Name must be at least 2 characters long"],
     maxLength: [20, "Name must be at most 20 characters long"],
   },
+  username: {
+    type: String,
+    required: [true, "Please provide username"],
+    maxLength: 20,
+    minLength: 4,
+  },
   email: {
     type: String,
     required: [true, "Please provide email address"],
@@ -24,13 +30,25 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide password value"],
     minLength: [6, "Password must be at lease 6 characters long"],
-    maxLength: [60, "Passsword must be at most 60 characters long"],
+    maxLength: [30, "Passsword must be at most 60 characters long"],
   },
   role: {
     type: String,
     enum: ["admin", "user"],
     default: "user",
   },
+  posts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Posts",
+    },
+  ],
+  savedPosts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Posts",
+    },
+  ],
   following: [
     {
       type: mongoose.Schema.Types.ObjectId,
