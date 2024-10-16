@@ -9,6 +9,11 @@ const errorHandler = (err, req, res, next) => {
     const customMsg = Object.values(err.errors).map((item) => item.message);
     return res.status(StatusCodes.BAD_REQUEST).json({ msg: customMsg });
   }
+  if (err.name === "CastError") {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ msg: `${err.value} is not valid id` });
+  }
   res
     .status(StatusCodes.INTERNAL_SERVER_ERROR)
     .json({ msg: "Something Went Wrong" });
