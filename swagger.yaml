@@ -3,7 +3,7 @@ info:
   title: 12-Social-Network
   version: 1.0.0
 servers:
-  - url: http://localhost:5000/api/v1
+  - url: https://social-network-api-us5x.onrender.com/api/v1
 tags:
   - name: Auth
   - name: Users
