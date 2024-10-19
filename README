@@ -2,9 +2,31 @@
 
 ### FEATURES
 
-[] OVERVIEW
+### IMPORTANT
 
-[] AUTH
+-HOSTED ON RENDER WITH FREE SERVICE PLAN...HOST WORKS BUT NEEDS TIME TO WAKE UP FROM SLEEP MODE
+
+### OVERVIEW
+
+This project is a RESTful API for a social networking platform built with Node.js, Express, and MongoDB. It provides core social media features such as user authentication, post creation, user following, commenting, liking posts, and managing user profiles. The API also supports secure authentication via JWT (JSON Web Tokens) and offers token-based email verification, password reset functionality, and more.
+
+The API is designed with scalability and security in mind, utilizing custom middleware for authentication and error handling. It integrates with cloud services for image storage (such as Cloudinary for profile pictures and posts) and supports flexible search functionalities for users and posts.
+
+### Key features include:
+
+User authentication (Register, Login, Logout, Verify Email, Password Reset)
+Following/unfollowing users and calculating follower stats
+Posting, commenting, liking posts with real-time updates
+Secure token management for authentication sessions
+Admin functionalities to manage users
+
+### Middlewares
+
+-Authentication: authenticates current user
+-Error Handler: custom error handler with Custom ERROR CLASSES
+-not found: not found routes
+
+### AUTH
 
 -Register User: Allows users to register an account and sends a verification email with a unique token.
 
@@ -18,7 +40,7 @@
 
 -Logout: Logs the user out by deleting both refresh and access tokens from the database to invalidate the session.
 
-[] USERS
+### USERS
 
 -Get All Users: Admin-only function to retrieve all users and their data.
 
@@ -35,4 +57,43 @@
 -Upload Profile Picture: Upload a picture to the cloud and update the user's profile picture property.
 
 -Delete User: Permanently delete the current user.
-g
+
+### FOLLOWERS
+
+-Follow User: following user & adding users to following/followers list & dynamicly calculating num followers
+
+-Unfollow User: unfollowing user & removing users from following/followers list & dynamicly calculating num followers
+
+-Get following/Get followers list : gives back lists of users with populated field to display usernames
+
+### Posts
+
+-Upload post: gets image and uploads it to cloud with checks for size and file type after successful upload creates post for current user
+
+-Get All Posts:
+
+-Get Single Post: gives back single post with populate virtual field for comments !!!
+
+-Update Post: self exp
+
+-Delete Post: self exp
+
+-Save / Unsave Post : adds/removes post from user saved posts
+
+-Get Saved Posts: self exp
+
+-Like/Unlike Post : likes/removes like from post & dynamicly calculating number of likes
+
+-Get post likes:gives back list of users who liked post
+
+### Comments
+
+-Create Comment: self exp
+
+-Get Post Comments: gets comments with populated fields for usernames
+
+-Update Comment: self exp
+
+-Delete Comment: self exp
+
+-deleteCommentFromPost: deletes specified comment from other users(only on own post!)
