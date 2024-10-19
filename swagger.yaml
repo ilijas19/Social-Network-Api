@@ -1,0 +1,458 @@
+openapi: 3.0.0
+info:
+  title: 12-Social-Network
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000/api/v1
+tags:
+  - name: Auth
+  - name: Users
+  - name: Followers
+  - name: Posts
+  - name: Comments
+paths:
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Register User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: ilija
+                username: ilijas19
+                email: ilijagocic1971@gmail.com
+                password: secret
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: ilijagocic1971@gmail.com
+                password: secret
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/verify-email:
+    post:
+      tags:
+        - Auth
+      summary: Verify Email
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                verificationToken: >-
+                  c053439ece28ff054d5acb29160d21f83d7da62554ad28b9dfdce035972e07a9c12755d32b5607a8
+                email: ilijagocic1971@gmail.com
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/forgot-password:
+    post:
+      tags:
+        - Auth
+      summary: Forgot Password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: ilijagocic1971@gmail.com
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/reset-password:
+    post:
+      tags:
+        - Auth
+      summary: Reset Password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: ilijagocic1971@gmail.com
+                token: >-
+                  763ee9ebf8f9bcc4982194c333117a9da40377ddd1bdab1bc35026d66d49ac47c8bb06f60ca944c5
+                password: ilijas19
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/logout:
+    get:
+      tags:
+        - Auth
+      summary: Logout User
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /users:
+    get:
+      tags:
+        - Users
+      summary: Get All Users
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /users/search:
+    get:
+      tags:
+        - Users
+      summary: Search For Users
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+          example: ilija
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /users/670e900db0b61b3ff0297fc4:
+    get:
+      tags:
+        - Users
+      summary: Get Single User
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /users/showMe:
+    get:
+      tags:
+        - Users
+      summary: Show Current User
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /users/updateUser:
+    patch:
+      tags:
+        - Users
+      summary: Update User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Ilija Gocic
+                bio: 21 Year Old Backend Developer
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /users/updateUserPassword:
+    patch:
+      tags:
+        - Users
+      summary: Update User Password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                currentPassword: secret
+                newPassword: secret
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /users/uploadProfilePicture:
+    post:
+      tags:
+        - Users
+      summary: Upload Profile Picture
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /users/deleteUser:
+    delete:
+      tags:
+        - Users
+      summary: Delete User
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /followers/follow/670e900db0b61b3ff0297fc4:
+    get:
+      tags:
+        - Followers
+      summary: Follow User
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /followers/unfollow/670e900db0b61b3ff0297fc4:
+    get:
+      tags:
+        - Followers
+      summary: Unfollow User
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /followers/getFollowing:
+    get:
+      tags:
+        - Followers
+      summary: Get Following List
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /followers/getFollowers:
+    get:
+      tags:
+        - Followers
+      summary: Get Followers List
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/:
+    post:
+      tags:
+        - Posts
+      summary: Upload Post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                caption:
+                  type: string
+                  example: lorem lorem
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Posts
+      summary: Get All My Posts
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/67126e93ab82bf827ad49545:
+    get:
+      tags:
+        - Posts
+      summary: Get Single Post
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/671260b0555b68d3ec0a7f90:
+    patch:
+      tags:
+        - Posts
+      summary: Update Post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                caption: updated lorem lorr
+                id: 671260b0555b68d3ec0a7f90
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Posts
+      summary: Delete Post
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/save/67126e93ab82bf827ad49545:
+    get:
+      tags:
+        - Posts
+      summary: Save Post
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/unsave/67126e93ab82bf827ad49545:
+    get:
+      tags:
+        - Posts
+      summary: Unsave Post
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/saved:
+    get:
+      tags:
+        - Posts
+      summary: Get Saved Posts
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/like/67126e93ab82bf827ad49545:
+    get:
+      tags:
+        - Posts
+      summary: Like Post
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/unlike/67126e93ab82bf827ad49545:
+    get:
+      tags:
+        - Posts
+      summary: Unlike Post
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/postLikes/67126e93ab82bf827ad49545:
+    get:
+      tags:
+        - Posts
+      summary: Get Post Likes
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /comment/67126e93ab82bf827ad49545:
+    get:
+      tags:
+        - Comments
+      summary: Get Post Comments
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Comments
+      summary: Create Comment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                commentText: G Comment to be removed
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /comment/6713bca15e2128bee7e55b41:
+    patch:
+      tags:
+        - Comments
+      summary: Update Comment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                text: Comment to be deleted
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Comments
+      summary: Delete Comment
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /comment/deleteComment:
+    delete:
+      tags:
+        - Comments
+      summary: Delete Comment From Post
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
