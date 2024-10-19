@@ -77,7 +77,18 @@ const getAllPosts = async (req, res) => {
 };
 const getSinglePost = async (req, res) => {
   const { id: postId } = req.params;
-  const post = await Post.findOne({ _id: postId });
+  const post = await Post.findOne({ _id: postId })
+    .populate({
+      path: "comments",
+      populate: {
+        path: "user",
+        select: "username",
+      },
+    })
+    .populate({
+      path: "likes",
+      select: "username",
+    });
   if (!post) {
     throw new CustomError.NotFoundError(`There is no post with id:${postId} i`);
   }
