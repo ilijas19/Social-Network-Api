@@ -141,11 +141,18 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /users/670e900db0b61b3ff0297fc4:
+  /users/{id}:
     get:
       tags:
         - Users
       summary: Get Single User
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the user
+          schema:
+            type: string
       responses:
         "200":
           description: Successful response
@@ -226,21 +233,35 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /followers/follow/670e900db0b61b3ff0297fc4:
+  /followers/follow/{id}:
     get:
       tags:
         - Followers
       summary: Follow User
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the user to follow
+          schema:
+            type: string
       responses:
         "200":
           description: Successful response
           content:
             application/json: {}
-  /followers/unfollow/670e900db0b61b3ff0297fc4:
+  /followers/unfollow/{id}:
     get:
       tags:
         - Followers
       summary: Unfollow User
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the user to unfollow
+          schema:
+            type: string
       responses:
         "200":
           description: Successful response
@@ -266,7 +287,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /posts/:
+  /posts:
     post:
       tags:
         - Posts
@@ -297,21 +318,34 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /posts/67126e93ab82bf827ad49545:
+  /posts/{id}:
     get:
       tags:
         - Posts
       summary: Get Single Post
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the post
+          schema:
+            type: string
       responses:
         "200":
           description: Successful response
           content:
             application/json: {}
-  /posts/671260b0555b68d3ec0a7f90:
     patch:
       tags:
         - Posts
       summary: Update Post
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the post to update
+          schema:
+            type: string
       requestBody:
         content:
           application/json:
@@ -319,7 +353,6 @@ paths:
               type: object
               example:
                 caption: updated lorem lorr
-                id: 671260b0555b68d3ec0a7f90
       responses:
         "200":
           description: Successful response
@@ -329,76 +362,64 @@ paths:
       tags:
         - Posts
       summary: Delete Post
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the post to delete
+          schema:
+            type: string
       responses:
         "200":
           description: Successful response
           content:
             application/json: {}
-  /posts/save/67126e93ab82bf827ad49545:
+  /posts/save/{id}:
     get:
       tags:
         - Posts
       summary: Save Post
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the post to save
+          schema:
+            type: string
       responses:
         "200":
           description: Successful response
           content:
             application/json: {}
-  /posts/unsave/67126e93ab82bf827ad49545:
+  /posts/unsave/{id}:
     get:
       tags:
         - Posts
       summary: Unsave Post
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the post to unsave
+          schema:
+            type: string
       responses:
         "200":
           description: Successful response
           content:
             application/json: {}
-  /posts/saved:
-    get:
-      tags:
-        - Posts
-      summary: Get Saved Posts
-      responses:
-        "200":
-          description: Successful response
-          content:
-            application/json: {}
-  /posts/like/67126e93ab82bf827ad49545:
-    get:
-      tags:
-        - Posts
-      summary: Like Post
-      responses:
-        "200":
-          description: Successful response
-          content:
-            application/json: {}
-  /posts/unlike/67126e93ab82bf827ad49545:
-    get:
-      tags:
-        - Posts
-      summary: Unlike Post
-      responses:
-        "200":
-          description: Successful response
-          content:
-            application/json: {}
-  /posts/postLikes/67126e93ab82bf827ad49545:
-    get:
-      tags:
-        - Posts
-      summary: Get Post Likes
-      responses:
-        "200":
-          description: Successful response
-          content:
-            application/json: {}
-  /comment/67126e93ab82bf827ad49545:
+  /comments/{id}:
     get:
       tags:
         - Comments
-      summary: Get Post Comments
+      summary: Get Comments of a Post
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the post to get comments from
+          schema:
+            type: string
       responses:
         "200":
           description: Successful response
@@ -407,31 +428,45 @@ paths:
     post:
       tags:
         - Comments
-      summary: Create Comment
+      summary: Add Comment to Post
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the post to comment on
+          schema:
+            type: string
       requestBody:
         content:
           application/json:
             schema:
               type: object
               example:
-                commentText: G Comment to be removed
+                text: wow
       responses:
         "200":
           description: Successful response
           content:
             application/json: {}
-  /comment/6713bca15e2128bee7e55b41:
+  /comments/update/{id}:
     patch:
       tags:
         - Comments
       summary: Update Comment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the comment to update
+          schema:
+            type: string
       requestBody:
         content:
           application/json:
             schema:
               type: object
               example:
-                text: Comment to be deleted
+                text: updated wow
       responses:
         "200":
           description: Successful response
@@ -441,16 +476,13 @@ paths:
       tags:
         - Comments
       summary: Delete Comment
-      responses:
-        "200":
-          description: Successful response
-          content:
-            application/json: {}
-  /comment/deleteComment:
-    delete:
-      tags:
-        - Comments
-      summary: Delete Comment From Post
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the comment to delete
+          schema:
+            type: string
       responses:
         "200":
           description: Successful response
